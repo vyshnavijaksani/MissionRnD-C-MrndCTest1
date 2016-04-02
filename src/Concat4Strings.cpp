@@ -28,6 +28,58 @@ Difficulty : Hard
 #include <stdio.h>
 
 char * concat_4strings(char *s1, char *s2, char *s3, char *s4){
-	//Return the new string created.
-	return NULL;
+	if (s1 == NULL&&s2 == NULL&&s3 == NULL&&s4 == NULL)
+		return NULL;
+	int len1 = 0, len2 = 0, len3 = 0, len4 = 0;
+	len1 = strlen(s1); 
+	len2 = strlen(s2);
+	len3 = strlen(s3);
+	len4 = strlen(s4);
+	struct test
+	{
+		int len;
+		char *str;
+	};
+	struct test temp[4];
+	temp[0].len = len1;
+	temp[0].str = s1;
+	temp[1].len = len1;
+	temp[1].str = s1;
+	temp[2].len = len1;
+	temp[2].str = s1;
+	temp[3].len = len1;
+	temp[3].str = s1;
+	int temp2 = len1 + len2 + len3 + len4;
+	char *res = (char *)malloc(temp2*sizeof(char *));
+	res = NULL;
+	
+	struct test tempo;
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (temp[i].len>temp[j].len)
+			{
+				 tempo = temp[i];
+				temp[i] = temp[j];
+				temp[j] = tempo;
+			}
+		}
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		if (temp[i].len != temp[i + 1].len)
+		{
+			res = strcat(temp[i].str, res);
+		}
+		else if (temp[i].len == temp[i + 1].len)
+		{
+			if (temp[i].str[0] < temp[i + 1].str[0])
+			{
+				res = strcat(temp[i].str, res);
+			}
+		}
+
+	}
+	return res;
 }
